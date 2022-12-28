@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./dist/my-lib.umd.js"></script>
+</head>
+<body>
+<div>
+    <!--    <hello-world></hello-world>-->
+
+    <div id="app">
+        {{ message }}
+        <hello-world></hello-world>
+    </div>
+
+    <script>
+
+        const { createApp } = Vue
+
+        let app = createApp( {
+            data() {
+                return {
+                    message: 'Hello Vue!'
+                }
+            }
+        } );
+        console.log( MyLib );
+        app.use(MyLib);
+        app.mount( '#app' );
+
+    </script>
+</div>
+</body>
+</html>
