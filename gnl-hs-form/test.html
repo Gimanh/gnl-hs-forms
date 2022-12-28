@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="./dist/my-lib.umd.js"></script>
+    <script src="./dist/gk-forms.umd.js"></script>
 </head>
 <body>
 <div>
@@ -12,7 +12,7 @@
 
     <div id="app">
         {{ message }}
-        <hello-world></hello-world>
+        <hello-world msg="UUUUUU"></hello-world>
     </div>
 
     <script>
@@ -26,8 +26,8 @@
                 }
             }
         } );
-        console.log( MyLib );
-        app.use(MyLib);
+        console.log( GKForms );
+        app.use(GKForms);
         app.mount( '#app' );
 
     </script>

@@ -13,7 +13,7 @@
 //
 // app.mount('#app')
 
-import GnlHsForm from '@/framework';
-export default GnlHsForm
+import GKForms from '@/framework';
+export default GKForms
 
 
