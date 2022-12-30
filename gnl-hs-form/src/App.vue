@@ -13,6 +13,7 @@ import { RouterLink, RouterView } from 'vue-router';
         />
 
         <div class="wrapper">
+            <form-field></form-field>
             <HelloWorld msg="You did it!" />
 
             <nav>

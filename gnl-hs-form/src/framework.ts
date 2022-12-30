@@ -1,9 +1,11 @@
-import HelloWorld from '@/components/HelloWorld.vue';
+import * as allComponents from '@/components'
+import type { App, Component } from "vue";
 
 export default {
-    install(app: any, args: any) {
-        console.log('install-gnl');
-        app.component('HelloWorld', HelloWorld);
-        console.log(app, args);
+    install( app: App, args: any ) {
+        let components: { [ key: string ]: Component } = allComponents;
+        for ( const componentName in components ) {
+            app.component( componentName, components[ componentName ] );
+        }
     },
 };
