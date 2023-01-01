@@ -1,11 +1,12 @@
-import * as allComponents from '@/components'
-import type { App, Component } from "vue";
+import * as allComponents from '@/components';
+import type { App, Component } from 'vue';
 
 export default {
-    install( app: App, args: any ) {
-        let components: { [ key: string ]: Component } = allComponents;
-        for ( const componentName in components ) {
-            app.component( componentName, components[ componentName ] );
+    install(app: App, args: any) {
+        console.log( allComponents );
+        const components: { [key: string]: Component } = allComponents;
+        for (const componentName in components) {
+            app.component(componentName, components[componentName]);
         }
     },
 };

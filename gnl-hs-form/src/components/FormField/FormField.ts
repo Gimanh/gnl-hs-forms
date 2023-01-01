@@ -1,16 +1,33 @@
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
+import type { PropType } from 'vue';
+import type { FieldType } from '@/components/Base/FieldProps';
 
 export default defineComponent( {
-    setup() {
-        const count = ref( 111 )
-
-        // expose to template and other options API hooks
-        return {
-            count
-        }
+    props: {
+        value: {
+            type: String,
+            required: true,
+        },
+        label: {
+            type: String,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+        fieldName: {
+            type: String,
+            required: true,
+        },
+        fieldType: {
+            type: String as PropType<FieldType>,
+            required: true,
+        },
     },
+    setup( props ) {
+    },
+    components:{
 
-    mounted() {
-        console.log( this.count ) // 0
     }
 } );
