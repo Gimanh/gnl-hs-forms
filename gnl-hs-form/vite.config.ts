@@ -5,9 +5,16 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import { resolve } from 'path';
 
+// https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
+import vuetify from 'vite-plugin-vuetify'
+
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [vue(), vueJsx()],
+    plugins: [
+		vue(),
+		vueJsx(),
+		vuetify({ autoImport: true }),
+	],
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url)),

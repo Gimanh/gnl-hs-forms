@@ -8,6 +8,8 @@ let qwert = ref('sometext');
 </script>
 
 <template>
+  <v-app>
+    <v-main>
     <header>
         {{ qwert }}
         <HelloWorld v-model="qwert" />
@@ -34,6 +36,8 @@ let qwert = ref('sometext');
     </header>
 
     <RouterView />
+    </v-main>
+  </v-app>
 </template>
 
 <style scoped>
