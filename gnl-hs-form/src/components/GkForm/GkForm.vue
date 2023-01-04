@@ -4,7 +4,9 @@
             Form header
         </slot>
         {{ formModel }}
-        <v-form>
+        <v-form
+            v-model="validForm"
+        >
             <component
                 :is="field.componentName"
                 v-for="field in form.fields"
