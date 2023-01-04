@@ -1,45 +1,14 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from '@/components/HelloWorld.vue';
-import { ref } from 'vue';
-
-
-let qwert = ref('sometext');
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
-  <v-app>
-    <v-main>
-    <header>
-        {{ qwert }}
-        
-        <HelloWorld v-model="qwert" />
-
-
-        <img
-            alt="Vue logo"
-            class="logo"
-            src="@/assets/logo.svg"
-            width="125"
-            height="125"
-        />
-
-        <div class="wrapper">
-            <!--            <form-field
-                            label="label-adfasdfasdf"
-                            value="value-123-pppppp"
-                        ></form-field>-->
-
-            <nav>
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-            </nav>
-        </div>
-    </header>
-
-    <RouterView />
-    </v-main>
-  </v-app>
+    <v-app>
+        <v-main>
+            <gk-form />
+            <RouterView />
+        </v-main>
+    </v-app>
 </template>
 
 <style scoped>
