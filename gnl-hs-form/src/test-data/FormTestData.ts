@@ -42,8 +42,9 @@ export const Form1: GkFormProps = {
                 componentName: 'v-combobox',
                 componentProps: {
                     label: 'Agree conditions',
-                    modelValue: [  ],
+                    modelValue: [ 'Georgia', ],
                     multiple: true,
+                    returnObject: true,
                     items: [ 'California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming' ],
                     rules: [
                         ( v: string ) => {
@@ -53,15 +54,26 @@ export const Form1: GkFormProps = {
                     ]
                 }
             },
-            // {
-            //     name: 'select',
-            //     componentName: 'v-select',
-            //     componentProps: {
-            //         label: 'Agree conditions',
-            //         modelValue: ['California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming'],
-            //         rules: [ ( v: boolean ) => v || 'Agree' ]
-            //     }
-            // }
+            {
+                name: 'select',
+                componentName: 'v-select',
+                componentProps: {
+                    label: 'Agree conditions',
+                    returnObject: true,
+                    modelValue: [ 'California' ],
+                    items: [
+                        'California', 'Colorado', 'Florida',
+                    ],
+
+                    // modelValue: { title: 't2', value: 'v2' },
+                    // items: [
+                    //     { title: 't1', value: 'v1' },
+                    //     { title: 't2', value: 'v2' },
+                    //     { title: 't3', value: 'v3' }
+                    // ],
+                    // rules: [ ( v: boolean ) => v || 'Agree' ]
+                }
+            }
         ],
     }
 ;

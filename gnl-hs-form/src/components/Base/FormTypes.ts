@@ -29,9 +29,20 @@ export type GkVuetifyProperties = {
     'v-combobox': TypeLabel & TypeRules & {
         modelValue: any
         items: string[]
-        multiple: boolean
+        multiple?: boolean
+        chips?: boolean,
+        itemTitle?: 'title' | string
+        itemValue?: 'value' | string
+    },
+    'v-select': TypeLabel & TypeRules & {
+        modelValue: any
+        items: string[] | Record<string, string>[]
+        multiple?: boolean
         chips?: boolean
-    }
+        returnObject?: boolean
+        itemTitle?: 'title' | string
+        itemValue?: 'value' | string
+    },
 };
 
 export type FormField = {
