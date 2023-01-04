@@ -9,8 +9,11 @@ let qwert = ref('sometext')
 <template>
     <header>
         {{ qwert }}
-        <HelloWorld
-            v-model="qwert" />
+        <suspense>
+            <HelloWorld
+                v-model="qwert" />
+        </suspense>
+
 
         <img
             alt="Vue logo"

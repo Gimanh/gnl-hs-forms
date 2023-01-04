@@ -1,7 +1,28 @@
 <!-- CustomInput.vue -->
-<script setup>
-defineProps(['modelValue'])
-defineEmits(['update:modelValue'])
+<script>
+import { defineComponent } from 'vue';
+
+export default defineComponent( {
+    props: {
+        modelValue: {
+            type: String
+        }
+    },
+    // emits: [ 'update:modelValue' ],
+    async setup( props, ctx ) {
+
+        const myEmit = ( value ) => {
+            debugger;
+            ctx.emit( 'update:modelValue', value )
+        }
+        return {
+            myEmit
+        }
+        // defineProps( [ 'modelValue' ] )
+        // defineEmits( [ 'update:modelValue' ] )
+    }
+} )
+
 </script>
 
 <template>
@@ -9,7 +30,7 @@ defineEmits(['update:modelValue'])
         <h1>HW</h1>
         <input
             :value="modelValue"
-            @input="$emit('update:modelValue', $event.target.value)"
+            @input="myEmit($event.target.value)"
         />
     </div>
 
