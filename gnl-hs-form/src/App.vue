@@ -1,18 +1,19 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from '@/components/HelloWorld.vue';
 import { ref } from 'vue';
 
-let qwert = ref('sometext')
+
+let qwert = ref('sometext');
 </script>
 
 <template>
+  <v-app>
+    <v-main>
     <header>
         {{ qwert }}
-        <suspense>
-            <HelloWorld
-                v-model="qwert" />
-        </suspense>
+        
+        <HelloWorld v-model="qwert" />
 
 
         <img
@@ -29,8 +30,6 @@ let qwert = ref('sometext')
                             value="value-123-pppppp"
                         ></form-field>-->
 
-
-
             <nav>
                 <RouterLink to="/">Home</RouterLink>
                 <RouterLink to="/about">About</RouterLink>
@@ -39,6 +38,8 @@ let qwert = ref('sometext')
     </header>
 
     <RouterView />
+    </v-main>
+  </v-app>
 </template>
 
 <style scoped>
