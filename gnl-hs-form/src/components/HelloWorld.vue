@@ -13,7 +13,7 @@ defineEmits(['update:modelValue'])
 
         <input
             :value="modelValue"
-            @input="$emit('update:modelValue', $event.target.value)"
+            @input="myEmit($event.target.value)"
         />
 
         <v-form v-model="valid">

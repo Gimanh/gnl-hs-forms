@@ -12,6 +12,7 @@ let qwert = ref('sometext');
     <v-main>
     <header>
         {{ qwert }}
+
         <HelloWorld v-model="qwert" />
 
         <img
