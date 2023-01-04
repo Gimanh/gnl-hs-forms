@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import { Form1 } from '@/test-data/FormTestData';
 </script>
 
 <template>
     <v-app>
         <v-main>
-            <gk-form />
+            <gk-form
+                :form="Form1"
+            />
             <RouterView />
         </v-main>
     </v-app>

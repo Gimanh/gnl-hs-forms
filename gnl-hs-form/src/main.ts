@@ -8,8 +8,9 @@ import GkForm from './framework'
 
 loadFonts()
 
-createApp( App )
-    .use( router )
-    .use( vuetify )
-    .use( GkForm )
-    .mount( '#app' )
+const app = createApp( App )
+
+app.use( router );
+app.use( vuetify )
+app.use( GkForm );
+app.mount( '#app' )

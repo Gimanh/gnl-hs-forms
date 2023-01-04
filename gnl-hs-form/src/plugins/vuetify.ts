@@ -4,7 +4,10 @@ import 'vuetify/styles'
 
 // Vuetify
 import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
 
-export default createVuetify(
-  // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
-)
+// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
+
+export default createVuetify( {
+    components
+} )
