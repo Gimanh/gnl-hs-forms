@@ -1,37 +1,42 @@
 <!-- CustomInput.vue -->
-<script>
-import { defineComponent } from 'vue';
+<script setup>
+defineProps(['modelValue'])
+defineEmits(['update:modelValue'])
 
-export default defineComponent( {
-    props: {
-        modelValue: {
-            type: String
-        }
-    },
-    // emits: [ 'update:modelValue' ],
-    async setup( props, ctx ) {
-
-        const myEmit = ( value ) => {
-            debugger;
-            ctx.emit( 'update:modelValue', value )
-        }
-        return {
-            myEmit
-        }
-        // defineProps( [ 'modelValue' ] )
-        // defineEmits( [ 'update:modelValue' ] )
-    }
-} )
 
 </script>
 
 <template>
-    <div>
+  <v-app>
+    <v-main>
+      <div>
         <h1>HW</h1>
+
         <input
             :value="modelValue"
             @input="myEmit($event.target.value)"
         />
-    </div>
 
+        <v-form v-model="valid">
+          <v-container>
+            <v-row>
+              <v-col
+                  cols="12"
+                  md="4"
+              >
+                <v-text-field
+                    :value="modelValue"
+                    @input="$emit('update:modelValue', $event.target.value)"
+                    label="Fill me"
+                    required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+            <v-btn @click="$emit('update:modelValue', $event.target.value)" elevation="2">Push me</v-btn>
+          </v-container>
+        </v-form>
+
+      </div>
+    </v-main>
+  </v-app>
 </template>
