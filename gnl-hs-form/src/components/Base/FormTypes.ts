@@ -16,25 +16,29 @@ type TypeRules = {
     rules?: FieldValidationRules
 }
 
+type BaseTypes = TypeLabel & TypeRules;
+
+type VRadioGroupItems = ( { value: string } & TypeLabel )[]
+
 export type GkVuetifyProperties = {
-    'v-checkbox': TypeLabel & TypeRules & {
+    'v-checkbox': BaseTypes & {
         modelValue: boolean
     }
-    'v-text-field': TypeLabel & TypeRules & {
+    'v-text-field': BaseTypes & {
         modelValue: string
     }
-    'v-text-area': TypeLabel & TypeRules & {
+    'v-text-area': BaseTypes & {
         modelValue: string
     },
-    'v-combobox': TypeLabel & TypeRules & {
+    'v-combobox': BaseTypes & {
         modelValue: any
         items: string[]
         multiple?: boolean
-        chips?: boolean,
+        chips?: boolean
         itemTitle?: 'title' | string
         itemValue?: 'value' | string
     },
-    'v-select': TypeLabel & TypeRules & {
+    'v-select': BaseTypes & {
         modelValue: any
         items: string[] | Record<string, string>[]
         multiple?: boolean
@@ -42,14 +46,36 @@ export type GkVuetifyProperties = {
         returnObject?: boolean
         itemTitle?: 'title' | string
         itemValue?: 'value' | string
+        clearable?: boolean
     },
+    'v-radio-group': BaseTypes & {
+        modelValue: string
+        items: VRadioGroupItems
+    },
+    'v-slider': BaseTypes & {
+        modelValue: number
+    },
+    'v-range-slider': BaseTypes & {
+        modelValue: [ number, number ]
+    },
+    'v-switch': BaseTypes & {
+        modelValue: number
+    },
+    'v-textarea': BaseTypes & {
+        modelValue: string
+    },
+    'v-file-input': BaseTypes & {
+        modelValue: File[]
+    }
 };
 
-export type FormField = {
+export type ComponentName = keyof GkVuetifyProperties;
+
+export type FormField<T extends ComponentName = any> = {
     isIdentifier?: true
     name: string
     componentName: keyof GkVuetifyProperties
-    componentProps: GkVuetifyProperties[keyof GkVuetifyProperties]
+    componentProps: GkVuetifyProperties[T] //FIXME must GkVuetifyProperties[componentName]
 };
 
 export type FormFields = FormField[];

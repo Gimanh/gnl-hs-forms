@@ -1,8 +1,9 @@
 import { defineComponent, reactive, ref } from 'vue';
 import type { PropType } from 'vue';
-import type { GkFormProps } from '@/components/Base/FormTypes';
+import type { ComponentName, FormField, GkFormProps } from '@/components/Base/FormTypes';
 
 export default defineComponent( {
+    components: {},
     props: {
         form: {
             type: Object as PropType<GkFormProps>,
@@ -20,6 +21,14 @@ export default defineComponent( {
             validForm,
             fields,
             formModel
+        }
+    },
+    methods: {
+        canUseDynamicComponents( componentName: ComponentName ): boolean {
+            return componentName !== 'v-radio-group';
+        },
+        getVRadioItems( field: FormField<'v-radio-group'> ) {
+            return field.componentProps.items
         }
     }
 } );

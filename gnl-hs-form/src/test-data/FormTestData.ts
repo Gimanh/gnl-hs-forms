@@ -48,6 +48,7 @@ export const Form1: GkFormProps = {
                     items: [ 'California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming' ],
                     rules: [
                         ( v: string ) => {
+                            debugger
                             console.log( v.length );
                             return !!v || 'Choose on from items'
                         }
@@ -71,9 +72,62 @@ export const Form1: GkFormProps = {
                     //     { title: 't2', value: 'v2' },
                     //     { title: 't3', value: 'v3' }
                     // ],
-                    // rules: [ ( v: boolean ) => v || 'Agree' ]
+                    rules: [
+                        ( v: string ) => {
+                            debugger;
+                            return !!v || 'Agree'
+                        }
+                    ],
+                }
+            },
+            {
+                name: 'radio',
+                componentName: 'v-radio-group',
+                componentProps: {
+                    modelValue: '1',
+                    label: 'VRadio',
+                    items: [
+                        { value: '1', label: 'One' },
+                        { value: '2', label: 'Two' }
+                    ]
+                }
+            },
+            {
+                name: 'slider',
+                componentName: 'v-slider',
+                componentProps: {
+                    modelValue: 90,
+                }
+            },
+            {
+                name: 'slider-range',
+                componentName: 'v-range-slider',
+                componentProps: {
+                    modelValue: [30, 90],
+                }
+            },
+            {
+                name: 'switch',
+                componentName: 'v-switch',
+                componentProps: {
+                    modelValue: true,
+                }
+            },
+            {
+                name: 'v-textarea',
+                componentName: 'v-textarea',
+                componentProps: {
+                    modelValue: 'Lorem',
+                }
+            },
+            {
+                name: 'v-file-input',
+                componentName: 'v-file-input',
+                componentProps: {
+                    modelValue: [],
                 }
             }
+
         ],
     }
 ;

@@ -1,7 +1,7 @@
 {
-  "name": "gnl-hs-form",
-  "version": "0.0.0",
-  "private": true,
+  "name": "gk-form",
+  "version": "0.0.1",
+  "private": false,
   "author": "Giman Nikolay and Kokorev Igor",
   "scripts": {
     "serve": "vite preview",
