@@ -1,5 +1,6 @@
 <template>
     <v-form
+        ref="vuetifyForm"
         v-model="validForm"
     >
         <template

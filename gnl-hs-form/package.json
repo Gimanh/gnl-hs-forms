@@ -1,6 +1,6 @@
 {
     "name": "gk-form",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "private": false,
     "author": "Giman Nikolay and Kokorev Igor",
     "types": "./dist/types.d.ts",
@@ -17,9 +17,7 @@
         "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'",
         "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
     },
-    "dependencies": {
-        "gk-form": "^0.0.2-a"
-    },
+    "dependencies": {},
     "main": "lib/gk-forms.mjs",
     "files": [
         "lib/*"

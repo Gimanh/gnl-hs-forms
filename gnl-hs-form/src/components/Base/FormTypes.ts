@@ -1,5 +1,9 @@
 export type FormMode = 'add' | 'edit';
 
+export type VuetifyForm = {
+    validate(): void;
+}
+
 type ValidationResult = string | boolean;
 type ValidationRule =
     ValidationResult

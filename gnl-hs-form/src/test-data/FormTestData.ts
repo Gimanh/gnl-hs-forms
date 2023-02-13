@@ -48,7 +48,6 @@ export const Form1: GkFormProps = {
                 items: [ 'California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming' ],
                 rules: [
                     ( v: string ) => {
-                        debugger
                         console.log( v.length );
                         return !!v || 'Choose on from items'
                     }
@@ -75,7 +74,6 @@ export const Form1: GkFormProps = {
 
                 rules: [
                     ( v: string ) => {
-                        debugger;
                         return !!v || 'Agree'
                     }
                 ],

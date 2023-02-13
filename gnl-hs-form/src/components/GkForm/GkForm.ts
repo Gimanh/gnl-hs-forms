@@ -1,6 +1,6 @@
 import { defineComponent, reactive, ref } from 'vue';
 import type { PropType } from 'vue';
-import type { ComponentName, FormField, GkFormProps } from '@/components/Base/FormTypes';
+import type { ComponentName, FormField, GkFormProps, VuetifyForm } from '@/components/Base/FormTypes';
 
 export default defineComponent( {
     components: {},
@@ -13,7 +13,7 @@ export default defineComponent( {
             required: true
         }
     },
-    setup( props, context ) {
+    setup( props ) {
         const validForm = ref( false );
         const fields = reactive( props.form.fields )
         let formModel: { [ key: string ]: any } = reactive( {} );
@@ -23,7 +23,7 @@ export default defineComponent( {
         return {
             validForm,
             fields,
-            formModel
+            formModel,
         }
     },
 
@@ -32,12 +32,17 @@ export default defineComponent( {
             handler( value: any ) {
                 this.$emit( 'update:modelValue', value )
             },
-            immediate: true
+            immediate: true,
         }
     },
 
-
     methods: {
+        validate() {
+            if ( this.$refs.vuetifyForm ) {
+                console.log( 'validate' );
+                ( this.$refs.vuetifyForm as VuetifyForm ).validate();
+            }
+        },
         canUseDynamicComponents( componentName: ComponentName ): boolean {
             return componentName !== 'v-radio-group';
         },
