@@ -1,14 +1,23 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import { Form1 } from '@/test-data/FormTestData';
+import { ref } from 'vue';
+
+let myModel = ref( null );
 </script>
 
 <template>
     <v-app>
         <v-main>
-            <gk-form
-                :form="Form1"
-            />
+            <div style="width: 500px;height: 500px; overflow: auto;">
+                <gk-form
+                    v-model="myModel"
+                    :form="Form1"
+                />
+            </div>
+            <h6 style="width: 500px; height:20px; background-color: red;">
+                {{ myModel }}
+            </h6>
             <RouterView />
         </v-main>
     </v-app>

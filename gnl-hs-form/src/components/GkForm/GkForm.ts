@@ -5,12 +5,15 @@ import type { ComponentName, FormField, GkFormProps } from '@/components/Base/Fo
 export default defineComponent( {
     components: {},
     props: {
+        modelValue: {
+            type: Object as PropType<any>
+        },
         form: {
             type: Object as PropType<GkFormProps>,
             required: true
         }
     },
-    setup( props ) {
+    setup( props, context ) {
         const validForm = ref( false );
         const fields = reactive( props.form.fields )
         let formModel: { [ key: string ]: any } = reactive( {} );
@@ -23,6 +26,17 @@ export default defineComponent( {
             formModel
         }
     },
+
+    watch: {
+        formModel: {
+            handler( value: any ) {
+                this.$emit( 'update:modelValue', value )
+            },
+            immediate: true
+        }
+    },
+
+
     methods: {
         canUseDynamicComponents( componentName: ComponentName ): boolean {
             return componentName !== 'v-radio-group';

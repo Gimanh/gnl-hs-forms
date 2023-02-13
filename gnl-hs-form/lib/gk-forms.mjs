@@ -1,22 +1,33 @@
-import { defineComponent as y, ref as k, reactive as c, resolveComponent as d, openBlock as m, createElementBlock as s, renderSlot as b, createTextVNode as f, toDisplayString as C, createVNode as M, withCtx as i, Fragment as u, renderList as v, createBlock as p, resolveDynamicComponent as U, mergeProps as F, createElementVNode as N } from "vue";
-const h = y({
+import { defineComponent as g, ref as k, reactive as f, resolveComponent as d, openBlock as m, createBlock as s, withCtx as i, createElementBlock as p, Fragment as c, renderList as v, resolveDynamicComponent as b, mergeProps as C } from "vue";
+const M = g({
   components: {},
   props: {
+    modelValue: {
+      type: Object
+    },
     form: {
       type: Object,
       required: !0
     }
   },
-  setup(e) {
-    const r = k(!1), n = c(e.form.fields);
-    let t = c({});
-    for (const a of e.form.fields)
-      t[a.name] = a.componentProps.modelValue;
+  setup(e, l) {
+    const n = k(!1), t = f(e.form.fields);
+    let a = f({});
+    for (const u of e.form.fields)
+      a[u.name] = u.componentProps.modelValue;
     return {
-      validForm: r,
-      fields: n,
-      formModel: t
+      validForm: n,
+      fields: t,
+      formModel: a
     };
+  },
+  watch: {
+    formModel: {
+      handler(e) {
+        this.$emit("update:modelValue", e);
+      },
+      immediate: !0
+    }
   },
   methods: {
     canUseDynamicComponents(e) {
@@ -26,61 +37,54 @@ const h = y({
       return e.componentProps.items;
     }
   }
-}), P = (e, r) => {
+}), U = (e, l) => {
   const n = e.__vccOpts || e;
-  for (const [t, a] of r)
+  for (const [t, a] of l)
     n[t] = a;
   return n;
-}, S = /* @__PURE__ */ N("button", null, "Show", -1);
-function $(e, r, n, t, a, j) {
-  const V = d("v-radio"), _ = d("v-radio-group"), g = d("v-form");
-  return m(), s("div", null, [
-    S,
-    b(e.$slots, "header", {}, () => [
-      f(" Form header ")
+};
+function F(e, l, n, t, a, u) {
+  const V = d("v-radio"), _ = d("v-radio-group"), y = d("v-form");
+  return m(), s(y, {
+    modelValue: e.validForm,
+    "onUpdate:modelValue": l[0] || (l[0] = (o) => e.validForm = o)
+  }, {
+    default: i(() => [
+      (m(!0), p(c, null, v(e.form.fields, (o) => (m(), p(c, {
+        key: o.name
+      }, [
+        e.canUseDynamicComponents(o.componentName) ? (m(), s(b(o.componentName), C({ key: 0 }, o.componentProps, {
+          modelValue: e.formModel[o.name],
+          "onUpdate:modelValue": (r) => e.formModel[o.name] = r
+        }), null, 16, ["modelValue", "onUpdate:modelValue"])) : (m(), s(_, {
+          key: 1,
+          modelValue: e.formModel[o.name],
+          "onUpdate:modelValue": (r) => e.formModel[o.name] = r
+        }, {
+          default: i(() => [
+            (m(!0), p(c, null, v(e.getVRadioItems(o), (r) => (m(), s(V, {
+              key: r.value,
+              label: r.label,
+              value: r.value
+            }, null, 8, ["label", "value"]))), 128))
+          ]),
+          _: 2
+        }, 1032, ["modelValue", "onUpdate:modelValue"]))
+      ], 64))), 128))
     ]),
-    f(" " + C(e.formModel) + " ", 1),
-    M(g, {
-      modelValue: e.validForm,
-      "onUpdate:modelValue": r[0] || (r[0] = (o) => e.validForm = o)
-    }, {
-      default: i(() => [
-        (m(!0), s(u, null, v(e.form.fields, (o) => (m(), s(u, {
-          key: o.name
-        }, [
-          e.canUseDynamicComponents(o.componentName) ? (m(), p(U(o.componentName), F({ key: 0 }, o.componentProps, {
-            modelValue: e.formModel[o.name],
-            "onUpdate:modelValue": (l) => e.formModel[o.name] = l
-          }), null, 16, ["modelValue", "onUpdate:modelValue"])) : (m(), p(_, {
-            key: 1,
-            modelValue: e.formModel[o.name],
-            "onUpdate:modelValue": (l) => e.formModel[o.name] = l
-          }, {
-            default: i(() => [
-              (m(!0), s(u, null, v(e.getVRadioItems(o), (l) => (m(), p(V, {
-                key: l.value,
-                label: l.label,
-                value: l.value
-              }, null, 8, ["label", "value"]))), 128))
-            ]),
-            _: 2
-          }, 1032, ["modelValue", "onUpdate:modelValue"]))
-        ], 64))), 128))
-      ]),
-      _: 1
-    }, 8, ["modelValue"])
-  ]);
+    _: 1
+  }, 8, ["modelValue"]);
 }
-const D = /* @__PURE__ */ P(h, [["render", $]]), O = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const O = /* @__PURE__ */ U(M, [["render", F]]), P = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  GkForm: D
-}, Symbol.toStringTag, { value: "Module" })), B = {
-  install(e, r) {
-    const n = O;
+  GkForm: O
+}, Symbol.toStringTag, { value: "Module" })), h = {
+  install(e, l) {
+    const n = P;
     for (const t in n)
       e.component(t, n[t]);
   }
 };
 export {
-  B as default
+  h as default
 };

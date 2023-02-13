@@ -83,5 +83,4 @@ export type FormFields = FormField[];
 export type GkFormProps = {
     mode: FormMode,
     fields: FormFields
-    // actions: ''
 }

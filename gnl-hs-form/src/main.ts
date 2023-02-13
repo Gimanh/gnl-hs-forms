@@ -3,10 +3,10 @@ import App from './App.vue'
 import router from './router'
 import vuetify from './plugins/vuetify'
 import 'vuetify/dist/vuetify.min.css'
-import { loadFonts } from './plugins/webfontloader'
 import GkForm from './framework'
 
-loadFonts()
+// //@ts-ignore
+// import GkForm from '../dist/gk-forms.mjs';
 
 const app = createApp( App )
 

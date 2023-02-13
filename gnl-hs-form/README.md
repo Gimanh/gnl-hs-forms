@@ -1,68 +1,169 @@
-# gnl-hs-form
+# gk-form
 
-This template should help get you started developing with Vue 3 in Vite.
+Vuetify form from data! Just pass object and get ready form.
 
-## Recommended IDE Setup
+```js
+export const formData: GkFormProps = {
+    mode: 'add',
+    fields: [
+        {
+            name: 'fname',
+            componentName: 'v-text-field',
+            componentProps: {
+                label: 'Fname label',
+                modelValue: 'Nikolay',
+            }
+        },
+        {
+            name: 'lname',
+            componentName: 'v-text-field',
+            componentProps: {
+                label: 'Lname label',
+                modelValue: 'Giman',
+            }
+        },
+        {
+            name: 'thirdname',
+            componentName: 'v-text-field',
+            componentProps: {
+                label: 'Third name label',
+                modelValue: '',
+                rules: [ ( v: string ) => !!v || 'Required field' ]
+            }
+        },
+        {
+            name: 'agree',
+            componentName: 'v-checkbox',
+            componentProps: {
+                label: 'Agree conditions',
+                modelValue: false,
+                rules: [ ( v: boolean ) => v || 'Agree' ]
+            }
+        },
+        {
+            name: 'combobox',
+            componentName: 'v-combobox',
+            componentProps: {
+                label: 'Agree conditions',
+                modelValue: [ 'Georgia', ],
+                multiple: true,
+                returnObject: true,
+                items: [ 'California', 'Colorado', 'Florida', 'Georgia', 'Texas', 'Wyoming' ],
+                rules: [
+                    ( v: string ) => {
+                        debugger
+                        console.log( v.length );
+                        return !!v || 'Choose on from items'
+                    }
+                ]
+            }
+        },
+        {
+            name: 'select',
+            componentName: 'v-select',
+            componentProps: {
+                label: 'Agree conditions',
+                returnObject: true,
+                modelValue: [ 'California' ],
+                items: [
+                    'California', 'Colorado', 'Florida',
+                ],
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+                // modelValue: { title: 't2', value: 'v2' },
+                // items: [
+                //     { title: 't1', value: 'v1' },
+                //     { title: 't2', value: 'v2' },
+                //     { title: 't3', value: 'v3' }
+                // ],
 
-## Type Support for `.vue` Imports in TS
+                rules: [
+                    ( v: string ) => {
+                        debugger;
+                        return !!v || 'Agree'
+                    }
+                ],
+            }
+        },
+        {
+            name: 'radio',
+            componentName: 'v-radio-group',
+            componentProps: {
+                modelValue: '1',
+                label: 'VRadio',
+                items: [
+                    { value: '1', label: 'I love Vue' },
+                    { value: '2', label: 'I love Vuetify' }
+                ]
+            }
+        },
+        {
+            name: 'slider',
+            componentName: 'v-slider',
+            componentProps: {
+                label: 'Slider label',
+                modelValue: 90,
+            }
+        },
+        {
+            name: 'slider-range',
+            componentName: 'v-range-slider',
+            componentProps: {
+                label: 'Slider range label',
+                modelValue: [ 30, 90 ],
+            }
+        },
+        {
+            name: 'switch',
+            componentName: 'v-switch',
+            componentProps: {
+                modelValue: true,
+            }
+        },
+        {
+            name: 'v-textarea',
+            componentName: 'v-textarea',
+            componentProps: {
+                modelValue: 'Lorem',
+            }
+        },
+        {
+            name: 'v-file-input',
+            componentName: 'v-file-input',
+            componentProps: {
+                modelValue: [],
+            }
+        }
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+    ],
+};
 ```
 
-### Compile and Hot-Reload for Development
+```vue
+<script setup lang="ts">
+    import { RouterView } from 'vue-router';
+    import { formData } from '@/test-data/FormTestData';
+    import { ref } from 'vue';
 
-```sh
-npm run dev
+    let myModel = ref( null );
+</script>
+
+<template>
+    <v-app>
+        <v-main>
+            <div style="width: 500px;height: 500px; overflow: auto;">
+                <gk-form
+                    v-model="myModel"
+                    :form="formData"
+                />
+            </div>
+            <h6>
+                { { myModel } }
+            </h6>
+            <RouterView/>
+        </v-main>
+    </v-app>
+</template>
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## TODO
+[] - Generate `d.ts` files
