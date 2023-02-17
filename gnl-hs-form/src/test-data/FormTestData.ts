@@ -111,7 +111,8 @@ export const Form1: GkFormProps = {
             name: 'switch',
             componentName: 'v-switch',
             componentProps: {
-                modelValue: true,
+                label: '',
+                modelValue: 1,
             }
         },
         {

@@ -1,5 +1,19 @@
 export type FormMode = 'add' | 'edit';
 
+export type GkVuetifyProperties = {
+    'v-checkbox': true
+    'v-text-field': true
+    'v-text-area': true
+    'v-combobox': true
+    'v-select': true
+    'v-radio-group': true
+    'v-slider': true
+    'v-range-slider': true
+    'v-switch': true
+    'v-textarea': true
+    'v-file-input': true
+};
+
 export type VuetifyForm = {
     validate(): void;
 }
@@ -13,78 +27,76 @@ type ValidationRule =
 
 export type FieldValidationRules = ValidationRule[];
 
-type TypeLabel = {
-    label: string
-};
 type TypeRules = {
     rules?: FieldValidationRules
 }
 
-type BaseTypes = TypeLabel & TypeRules;
-
-type VRadioGroupItems = ( { value: string } & TypeLabel )[]
-
-export type GkVuetifyProperties = {
-    'v-checkbox': BaseTypes & {
-        modelValue: boolean
-    }
-    'v-text-field': BaseTypes & {
-        modelValue: string
-    }
-    'v-text-area': BaseTypes & {
-        modelValue: string
-    },
-    'v-combobox': BaseTypes & {
-        modelValue: any
-        items: string[]
-        multiple?: boolean
-        chips?: boolean
-        itemTitle?: 'title' | string
-        itemValue?: 'value' | string
-    },
-    'v-select': BaseTypes & {
-        modelValue: any
-        items: string[] | Record<string, string>[]
-        multiple?: boolean
-        chips?: boolean
-        returnObject?: boolean
-        itemTitle?: 'title' | string
-        itemValue?: 'value' | string
-        clearable?: boolean
-    },
-    'v-radio-group': BaseTypes & {
-        modelValue: string
-        items: VRadioGroupItems
-    },
-    'v-slider': BaseTypes & {
-        modelValue: number
-    },
-    'v-range-slider': BaseTypes & {
-        modelValue: [ number, number ]
-    },
-    'v-switch': BaseTypes & {
-        modelValue: number
-    },
-    'v-textarea': BaseTypes & {
-        modelValue: string
-    },
-    'v-file-input': BaseTypes & {
-        modelValue: File[]
-    }
+type TypeLabelEx = {
+    label?: string
 };
+
+type VRadioGroupItems = ( { value: string } & TypeLabelEx )[]
+
+type VCheckbox = BaseTypesEx<'v-checkbox'> & { modelValue: boolean }
+type VTextField = BaseTypesEx<'v-text-field'> & { modelValue: string }
+type VTextArea = BaseTypesEx<'v-text-area'> & {
+    modelValue: string
+}
+type VCombobox = BaseTypesEx<'v-combobox'> & {
+    modelValue: any
+    items: string[]
+    multiple?: boolean
+    chips?: boolean
+    itemTitle?: 'title' | string
+    itemValue?: 'value' | string
+}
+type VSelect = BaseTypesEx<'v-select'> & {
+    modelValue: any
+    items: string[] | Record<string, string>[]
+    multiple?: boolean
+    chips?: boolean
+    returnObject?: boolean
+    itemTitle?: 'title' | string
+    itemValue?: 'value' | string
+    clearable?: boolean
+}
+type VRadioGroup = BaseTypesEx<'v-radio-group'> & {
+    modelValue: string,
+    items: VRadioGroupItems
+}
+type VSlider = BaseTypesEx<'v-slider'> & { modelValue: number }
+type VRangeSlider = BaseTypesEx<'v-range-slider'> & { modelValue: [ number, number ] }
+type VSwitch = BaseTypesEx<'v-switch'> & { modelValue: number }
+type VTextarea = BaseTypesEx<'v-textarea'> & { modelValue: string }
+type VFileInput = BaseTypesEx<'v-file-input'> & { modelValue: File[], }
+
+type GkVuetifyPropertiesEx =
+    VCheckbox
+    | VTextField
+    | VTextArea
+    | VCombobox
+    | VSelect
+    | VRadioGroup
+    | VSlider
+    | VRangeSlider
+    | VSwitch
+    | VTextarea
+    | VFileInput;
 
 export type ComponentName = keyof GkVuetifyProperties;
 
-export type FormField<T extends ComponentName = any> = {
+type BaseTypesEx<T extends ComponentName> = TypeLabelEx & TypeRules;
+
+type GkVuetifyPropertyEx<T extends ComponentName, U = GkVuetifyPropertiesEx> = U extends BaseTypesEx<T> ? U : never;
+
+export type FormFieldEx<T extends ComponentName = any> = {
     isIdentifier?: true
     name: string
-    componentName: keyof GkVuetifyProperties
-    componentProps: GkVuetifyProperties[T] //FIXME must GkVuetifyProperties[componentName]
+    componentName: T
+    componentProps: GkVuetifyPropertyEx<T>
 };
-
-export type FormFields = FormField[];
 
 export type GkFormProps = {
     mode: FormMode,
-    fields: FormFields
+    fields: FormFieldEx[]
 }
